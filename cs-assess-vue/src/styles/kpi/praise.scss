@@ -1,0 +1,25 @@
+.praise-container {
+  padding: 20px;
+  .pc-form-wrapper {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ebeef5;
+  }
+  .add-dialog, .update-dialog, .audit-dialog {
+    .el-select, .el-date-editor {
+      width: 100%;
+    }
+  }
+  .praise-page {
+    text-align: right;
+    margin: 20px 0;
+  }
+  .add-dialog, .update-dialog {
+    .btn-search-wrapper {
+      position: absolute;
+      right: 0;
+      top: 0;
+      border-radius: 0 4px 4px 0;
+      padding: 10px;
+    }
+  }
+}

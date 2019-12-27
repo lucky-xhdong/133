@@ -1,0 +1,61 @@
+.shiftRule-container {
+  padding: 20px;
+  .sc-form-wrapper {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ebeef5;
+  }
+  .add-dialog, .update-dialog, .audit-dialog {
+    .el-select, .el-date-editor, .el-input-number {
+      width: 100%;
+    }
+  }
+  .shiftRule-page {
+    text-align: right;
+    margin: 20px 0;
+  }
+  .add-dialog, .update-dialog {
+    .errorTip {
+      margin: 0;
+      padding: 0;
+      color: #f56c6c;
+    }
+    .btn-search-wrapper {
+      position: absolute;
+      right: 0;
+      top: 0;
+      border-radius: 0 4px 4px 0;
+      padding: 10px;
+    }
+  }
+  .add-dialog {
+    .time-slot {
+      position: absolute;
+      right: 10px;
+      top: 0;
+    }
+  }
+}
+// 面包屑导航样式
+.breadcrumb-wrapper {
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  padding-left: 76px;
+  &:before, .btn-back {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    color: #606266;
+  }
+  &:before {
+    content: attr(data-before);
+    left: 0;
+  }
+  .btn-back {
+    right: 0;
+    &:hover {
+      text-decoration: underline;
+      color: #409EFF;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+.leave-dialog {
+  .el-select, .el-input-number {
+    width: 100%;
+  }
+  .el-form__leave {
+    position: relative;
+    &.required {
+      &:before {
+        content: '*';
+        position: absolute;
+        left: 42px;
+        top: 50%;
+        color: #f56c6c;
+        margin-top: -12px;
+      }
+    }
+    .el-form__mini {
+      display: inline-block;
+      vertical-align: middle;
+      .el-date-editor,.txt-time {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .el-date-editor {
+        width: 166px;
+      }
+    }
+  }
+  .el-file__upload {
+    position: relative;
+    .btn-upload {
+      position: absolute;
+      top: 2px;
+      left: 94px;
+    }
+  }
+}

@@ -1,0 +1,643 @@
+.allShiftDayView, .allShiftMonthView, .groupShiftMonthView, .personShiftMonthView, .workerStateDayView {
+  padding: 20px;
+  .form-wrapper {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ebeef5;
+  }
+}
+// 整体班务日视图
+.allShiftDayView {
+  .table-wrapper {
+    margin: 0 auto;
+    border: 1px solid #ebebeb;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+    .table-wrapper__left,.table-wrapper__right {
+      border-collapse: collapse;
+      .user-table, .shift-table {
+        border-collapse: collapse;
+        position: relative;
+        table-layout: fixed;
+        thead {
+          tr {
+            color: #909399;
+            th {
+              min-width: 0;
+              box-sizing: border-box;
+              text-overflow: ellipsis;
+              vertical-align: middle;
+              position: relative;
+              text-align: left;
+              border-bottom: 1px solid #ebeef5;
+              .cell {
+                white-space: nowrap;
+                font-size: 14px;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+              }
+            }
+          }
+        }
+        tbody {
+          tr {
+            position: relative;
+            td {
+              min-width: 0;
+              box-sizing: border-box;
+              text-overflow: ellipsis;
+              vertical-align: middle;
+              text-align: left;
+              border-top: 1px solid #ebeef5;
+              border-right: 1px solid #ebeef5;
+              position: relative;
+              .cell {
+                min-height: 60px;
+                position: relative;
+                padding: 20px 0 10px;
+                font-size: 14px;
+                text-align: center;
+                .txt-shift {
+                  line-height: 30px;
+                  color: #606266;
+                }
+              }
+            }
+
+            .shift-progress {
+              position: absolute;
+              left: 0;
+              right: 0;
+
+              .shift-progress-normal, .shift-progress-overday, .shift-progress-start, .shift-progress-end {
+                position: absolute;
+                background-color: #409EFF;
+                height: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .table-wrapper__left {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 96px;
+      bottom: 0;
+      z-index: 11;
+      border-right: 1px solid #ebeef5;
+      background-color: #fff;
+      .user-table {
+        width: 100%;
+        tbody {
+          tr {
+            td {
+              .cell {
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+      .label-total {
+        text-align: center;
+        font-size: 12px;
+        position: absolute;
+        bottom: 0;
+        width: 96px;
+        height: 52px;
+        line-height: 52px;
+        color: #666;
+        border-top: 1px solid #ebeef5;
+        border-right: 1px solid #ebeef5;
+      }
+    }
+    .table-wrapper__right {
+      width: 100%;
+      float: left;
+      padding-left: 96px;
+      overflow-y: hidden;
+      overflow-x: auto;
+      font-size: 0;
+      position: relative;
+      z-index: 1;
+      .bg-shift-table {
+        position: absolute;
+        width: 1442px;
+        height: 100%;
+        table-layout: fixed;
+        border-collapse: collapse;
+        thead {
+          tr {
+            th {
+              overflow: hidden;
+              width: 100%;
+              .cell {
+                width: 16px;
+                height: 53px;
+                float: left;
+                border: 1px dotted #ebeef5;
+                margin-left: -1px;
+                margin-top: -1px;
+                margin-bottom: -1px;
+              }
+            }
+          }
+        }
+        tbody {
+          tr {
+            overflow: hidden;
+            width: 100%;
+            .cell {
+              float: left;
+              width: 16px;
+              height: 65px;
+              border: 1px dotted #ebeef5;
+              margin-left: -1px;
+              margin-top: -1px;
+              margin-bottom: -1px;
+            }
+          }
+        }
+      }
+      .shift-table {
+        table-layout: fixed;
+        width: 1442px;
+        thead {
+          tr {
+            th {
+              border-right: 1px solid #ebeef5;
+              width: 60px;
+            }
+          }
+        }
+        tbody {
+          tr {
+            td {
+              width: 60px;
+            }
+          }
+        }
+      }
+      .total-table {
+        float: left;
+        width: 1442px;
+        position: relative;
+        border-right: 1px solid #ebebeb;
+        border-collapse: collapse;
+        margin-left: -1px;
+        tbody {
+          white-space: nowrap;
+          .cell {
+            display: inline-block;
+            vertical-align: middle;
+            width: 15px;
+            font-size: 12px;
+            height: 52px;
+            line-height: 52px;
+            text-align: center;
+            border: 1px dotted #ebeef5;
+          }
+        }
+      }
+      .no-data {
+        margin: 50px 0;
+        display: table;
+        width: 100%;
+        font-size: 14px;
+        color: #606266;
+        text-align: center;
+      }
+    }
+  }
+  .total-table-count {
+    font-size: 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    clear: both;
+    border-top: 1px solid #ebebeb;
+    .label-total, .total-table {
+      color: #666;
+    }
+  }
+}
+@media (min-width: 1200px) {
+  .allShiftDayView {
+    .table-wrapper {
+      width: 1540px;
+    }
+  }
+}
+@media (max-width: 1200px) {
+  .allShiftDayView {
+    .table-wrapper {
+      width: 1000px;
+    }
+  }
+}
+// 整体班务月视图
+.allShiftMonthView {
+   // 规则弹窗
+  .rule-dialog {
+    .el-select, .el-cascader, .el-date-editor {
+      width: 100%;
+    }
+    .el-form {
+      overflow: hidden;
+      .rd-left {
+        float: left;
+      }
+      .rd-right {
+        float: right;
+        .rd-table-wrapper {
+          width: 500px;
+          padding-right: 40px;
+          .el-table {
+            height: 415px;
+            overflow-y: auto;
+            overflow-x: hidden;
+          }
+        }
+      }
+    }
+  }
+  // 日排班弹窗
+  .day-shift-dialog {
+    overflow: hidden;
+    .day-shift-dialog_left, .day-shift-dialog_right {
+      .shift-list {
+        border-bottom: 1px dashed #f0f0f0;
+        margin-bottom: 20px;
+      }
+    }
+    .day-shift-dialog_left {
+      float: left;
+      &:before {
+        content: attr(data-before);
+        display: block;
+        font-size: 16px;
+        line-height: 36px;
+        margin-bottom: 20px;
+        padding: 0 15px 15px;
+        border-bottom: 1px solid #f0f0f0;
+      }
+    }
+    .day-shift-dialog_right {
+      float: right;
+      .el-select {
+        width: 100%;
+      }
+      .btn-group, .btn-group-add {
+        text-align: right;
+        margin-bottom: 20px;
+      }
+      .btn-group {
+        width: 566px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #f0f0f0;
+      }
+    }
+    .el-transfer__buttons {
+      padding: 0 15px;
+    }
+    .dialog-inner {
+      height: 495px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+}
+
+// 整体班务月视图，个人班务月视图
+.allShiftMonthView, .personShiftMonthView {
+  .calendar-wrapper {
+    color: #606266;
+    border: 1px solid #ebeef5;
+    background: #fff;
+    line-height: 30px;
+    margin: 5px 0;
+    .cw-header {
+      width: 100%;
+      text-align: center;
+      overflow: hidden;
+      font-size: 24px;
+      padding-top: 20px;
+      .arrow {
+        display: block;
+        padding: 10px 15px;
+        font-family: SimSun;
+        &:hover {
+          color: #409eff;
+        }
+        &.arrow-left {
+          float: left;
+        }
+        &.arrow-right {
+          float: right;
+        }
+      }
+      .txt-date {
+        line-height: 40px;
+        font-weight: bold;
+        display: inline-block;
+      }
+    }
+    .weekday {
+      padding: 15px 0;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      ul {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        li {
+          list-style: none;
+          flex: 1;
+          text-align: center;
+          font-weight: bold;
+        }
+      }
+    }
+    .month {
+      background: #FFFFFF;
+      font-size: 0;
+      ul {
+        padding: 0;
+        margin-left: -1px;
+        margin-right: -1px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        li {
+          list-style-type: none;
+          display: flex;
+          justify-content: center;
+          width: 14.28%;
+          min-height: 120px;
+          border-top: 1px solid #ebeef5;
+          border-left: 1px solid #ebeef5;
+          text-align: center;
+          font-size: 1rem;
+          line-height: 1;
+          color: #606266;
+          .other-month, .current-month {
+            flex: 1;
+            .day-wrapper {
+              padding: 15px 0;
+              height: 100%;
+              position: relative;
+              &.active, &:hover {
+                background-color: #e6f7ff;
+              }
+              .el-tag__state {
+                position: absolute;
+                left: 0;
+                top: 0;
+              }
+              .txt-day {
+                display: block;
+                font-weight: bold;
+              }
+              .btn-view, .btn-edit {
+                margin-bottom: 5px;
+              }
+              .txt-shift-info {
+                margin-bottom: 5px;
+                .el-button {
+                  padding: 6px 20px;
+                  border-color: transparent;
+                  background-color: transparent;
+                  &:hover {
+                    border-color: #fff;
+                    background-color: #fff;
+                  }
+                }
+              }
+            }
+          }
+          .current-month {
+            cursor: pointer;
+          }
+          .active {
+            padding: 6px 10px;
+            color: #409eff;
+            font-weight: bold;
+            height: 100%;
+          }
+          .other-month {
+            padding: 5px;
+            color: gainsboro;
+          }
+          &:hover {
+            color: #409eff;
+          }
+        }
+      }
+    }
+    .choose-year {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .choose-month {
+      text-align: center;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+// 小组班务月视图
+.groupShiftMonthView {
+  .form-wrapper {
+    .el-tooltip {
+      margin-left: 10px;
+    }
+  }
+  .table-wrapper {
+    border: 1px solid #ebebeb;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+    .table-wrapper__left {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100px;
+      bottom: 16px;
+      z-index: 11;
+      border-right: 1px solid #ebeef5;
+      background-color: #fff;
+      .user-table {
+        width: 100%;
+      }
+    }
+    .table-wrapper__right {
+      width: 100%;
+      float: left;
+      padding-left: 100px;
+      overflow-y: hidden;
+      overflow-x: auto;
+      font-size: 0;
+      position: relative;
+      z-index: 1;
+      .shift-table {
+        thead {
+          tr {
+            th {
+              border-right: 1px solid #ebeef5;
+              width: 150px;
+            }
+          }
+        }
+        tbody {
+          tr {
+            td {
+              .cell {
+                width: 115px;
+              }
+            }
+          }
+        }
+      }
+      .no-data {
+        margin: 50px 0;
+        display: table;
+        width: 100%;
+        font-size: 14px;
+        color: #606266;
+        text-align: center;
+      }
+    }
+
+    .user-table, .shift-table {
+      border-collapse: collapse;
+      table-layout: fixed;
+      thead {
+        tr {
+          color: #909399;
+          th {
+            padding: 12px 0;
+            min-width: 0;
+            box-sizing: border-box;
+            text-overflow: ellipsis;
+            vertical-align: middle;
+            position: relative;
+            text-align: left;
+            border-bottom: 1px solid #ebeef5;
+            width: 60px;
+            .cell {
+              padding: 0 10px;
+              white-space: nowrap;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+            width: 60px;
+            min-width: 0;
+            box-sizing: border-box;
+            text-overflow: ellipsis;
+            vertical-align: middle;
+            text-align: left;
+            border-top: 1px solid #ebeef5;
+            border-right: 1px solid #ebeef5;
+            position: relative;
+            .el-tag {
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
+            .cell {
+              min-height: 76px;
+              position: relative;
+              font-size: 14px;
+              .txt-shift {
+                padding: 30px 10px 10px;
+                display: block;
+                min-height: 76px;
+                color: #606266;
+              }
+              &.active {
+                background-color: #409EFF;
+                .txt-shift {
+                  color: #ffff;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .el-alert-tip {
+    margin-top: 10px;
+  }
+}
+
+.workerStateDayView {
+  .page-wrapper {
+    text-align: right;
+    margin: 20px 0;
+  }
+}
+
+// 面包屑导航样式
+.breadcrumb-wrapper {
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  padding-left: 76px;
+  &:before, .btn-back {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    color: #606266;
+  }
+  &:before {
+    content: attr(data-before);
+    left: 0;
+  }
+  .btn-back {
+    right: 0;
+    &:hover {
+      text-decoration: underline;
+      color: #409EFF;
+    }
+  }
+}
+
+
+.day-shift-dialog {
+  .el-cascader {
+    width: 100%;
+  }
+}
+
+.front-seat-dialog {
+  .el-date-editor {
+    margin-right: 10px;
+  }
+  .form-wrapper {
+    position: relative;
+    .el-form-item {
+      width: 100%;
+      .excel-upload, .btn-download {
+        position: absolute;
+        top: 0;
+      }
+      .excel-upload {
+        left: 230px;
+      }
+      .btn-download {
+        left: 345px;
+      }
+    }
+  }
+}
